@@ -22,12 +22,12 @@ class Profile(models.Model):
 	nickname = models.CharField(max_length=50, unique=True, blank=True, null=True)
 	name = models.CharField(max_length=50, blank=True, null=True)
 	surname = models.CharField(max_length=50, blank=True, null=True)
-	email = models.EmailField(max_length=50, blank=True, unique=True, null=True)
+	email = models.EmailField(blank=True, unique=True, null=True)
 	city = models.CharField(max_length=50, blank=True, null=True)
 	about = models.TextField(max_length=500, blank=True, null=True)
 	skills = models.ManyToManyField(Skill, blank=True)
-	telegram = models.URLField(max_length=100, blank=True, null=True)
-	github = models.URLField(max_length=100, blank=True, null=True)
+	telegram = models.URLField(blank=True, null=True)
+	github = models.URLField(blank=True, null=True)
 	created = models.DateTimeField(auto_now_add=True)
 
 	class Meta:
