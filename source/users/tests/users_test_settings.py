@@ -59,6 +59,7 @@ class UsersSettings(TestCase):
             telegram='https://t.me/TestUser1',
             github='https://github.com',
         )
+        cls.test_profile1.skills.set([cls.test_skill1, cls.test_skill2])
 
         cls.test_profile2 = Profile.objects.create(
             user=cls.test_user2,
@@ -71,6 +72,7 @@ class UsersSettings(TestCase):
             telegram='https://t.me/TestUser2',
             github='https://github.com',
         )
+        cls.test_profile2.skills.set([cls.test_skill3, cls.test_skill4])
 
         cls.test_profile3 = Profile.objects.create(
             user=cls.test_user3,
@@ -83,6 +85,7 @@ class UsersSettings(TestCase):
             telegram='https://t.me/TestUser3',
             github='https://github.com',
         )
+        cls.test_profile3.skills.set([cls.test_skill1, cls.test_skill3])
 
         cls.test_profile4 = Profile.objects.create(
             user=cls.test_user4,
@@ -95,6 +98,7 @@ class UsersSettings(TestCase):
             telegram='https://t.me/TestUser4',
             github='https://github.com',
         )
+        cls.test_profile4.skills.set([cls.test_skill2, cls.test_skill4])
 
     @classmethod
     def tearDownClass(cls) -> None:

@@ -1,4 +1,3 @@
-from django.test import TestCase
 from django.db.utils import IntegrityError, DataError
 
 from .users_test_settings import UsersSettings
@@ -36,6 +35,11 @@ class ProfileModelTestCase(UsersSettings):
         self.assertEqual(self.test_profile1.about, 'Something about test_user1', self.error())
         self.assertEqual(self.test_profile1.telegram, 'https://t.me/TestUser1', self.error())
         self.assertEqual(self.test_profile1.github, 'https://github.com', self.error())
+        self.assertEqual(
+            [skill for skill in self.test_profile1.skills.all()],
+            [self.test_skill1, self.test_skill2],
+            self.error()
+        )
 
     def test_profile_meta_poles(self) -> None:
         self.assertEqual(self.test_profile1._meta.verbose_name, 'Профиль', self.error())
