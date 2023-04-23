@@ -22,9 +22,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'bootstrap5',
+    'rest_framework',
     
     'users.apps.UsersConfig',
-    'dashboard.apps.DashboardConfig',
+    'billboard.apps.BillboardConfig',
 ]
 
 MIDDLEWARE = [
@@ -101,6 +102,8 @@ STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = []
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
