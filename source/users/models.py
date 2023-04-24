@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Technologie(models.Model):
-	title = models.CharField(max_length=50, unique=True)
+	title = models.CharField('Название технологии', max_length=50, unique=True)
 	created = models.DateTimeField(auto_now_add=True)
 
 	class Meta:
@@ -18,7 +18,7 @@ class Technologie(models.Model):
 
 
 class Specialization(models.Model):
-	title = models.CharField(max_length=50)
+	title = models.CharField('Название специализации', max_length=50)
 
 	class Meta:
 		verbose_name = 'Специализация'
