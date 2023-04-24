@@ -1,24 +1,24 @@
 from rest_framework import serializers
 from rest_framework.fields import CurrentUserDefault
 
-from users.models import Profile, Technologie, Specialization
+from users import models
 
 
 class ProfileSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=CurrentUserDefault())
 
     class Meta:
-        model = Profile
+        model = models.Profile
         fields = '__all__'
 
 
 class SpecializationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Specialization
+        model = models.Specialization
         fields = '__all__'
 
 
 class TechnologieSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Technologie
-        fields = ('id', 'title',)
+        model = models.Technologie
+        fields = '__all__'

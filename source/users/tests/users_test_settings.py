@@ -2,18 +2,25 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.test.client import Client
 
-from users.models import Skill, Profile
+from users.models import Technologie, Profile, Specialization
 
 
 class UsersSettings(TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         super().setUpClass()
+
+        # Create test specializations
+        cls.test_specialization1 = Specialization.objects.create(title='Backend')
+        cls.test_specialization2 = Specialization.objects.create(title='Frontend')
+        cls.test_specialization3 = Specialization.objects.create(title='DevOps')
+        cls.test_specialization4 = Specialization.objects.create(title='Fullstack')
+
         # Create test skills
-        cls.test_skill1 = Skill.objects.create(title='Django_test_skill')
-        cls.test_skill2 = Skill.objects.create(title='JavaScript_test_skill')
-        cls.test_skill3 = Skill.objects.create(title='Python_test_skill')
-        cls.test_skill4 = Skill.objects.create(title='React_test_skill')
+        cls.test_technologie1 = Technologie.objects.create(title='Django_test_skill')
+        cls.test_technologie2 = Technologie.objects.create(title='JavaScript_test_skill')
+        cls.test_technologie3 = Technologie.objects.create(title='Python_test_skill')
+        cls.test_technologie4 = Technologie.objects.create(title='React_test_skill')
 
         # Create users
         cls.test_user1 = User.objects.create_user(
@@ -54,10 +61,11 @@ class UsersSettings(TestCase):
             surname='test_user1_surname',
             city='default_City1',
             about='Something about test_user1',
+            specialization=cls.test_specialization1,
             telegram='https://t.me/TestUser1',
             github='https://github.com',
         )
-        cls.test_profile1.skills.set([cls.test_skill1, cls.test_skill2])
+        cls.test_profile1.skills.set([cls.test_technologie1, cls.test_technologie2])
 
         cls.test_profile2 = Profile.objects.create(
             user=cls.test_user2,
@@ -65,10 +73,11 @@ class UsersSettings(TestCase):
             surname='test_user2_surname',
             city='default_City1',
             about='Something about test_user2',
+            specialization=cls.test_specialization2,
             telegram='https://t.me/TestUser2',
             github='https://github.com',
         )
-        cls.test_profile2.skills.set([cls.test_skill3, cls.test_skill4])
+        cls.test_profile2.skills.set([cls.test_technologie3, cls.test_technologie4])
 
         cls.test_profile3 = Profile.objects.create(
             user=cls.test_user3,
@@ -76,10 +85,11 @@ class UsersSettings(TestCase):
             surname='test_user3_surname',
             city='default_City2',
             about='Something about test_user3',
+            specialization=cls.test_specialization2,
             telegram='https://t.me/TestUser3',
             github='https://github.com',
         )
-        cls.test_profile3.skills.set([cls.test_skill1, cls.test_skill3])
+        cls.test_profile3.skills.set([cls.test_technologie1, cls.test_technologie3])
 
         cls.test_profile4 = Profile.objects.create(
             user=cls.test_user4,
@@ -87,10 +97,11 @@ class UsersSettings(TestCase):
             surname='test_user4_surname',
             city='default_City2',
             about='Something about test_user4',
+            specialization=cls.test_specialization3,
             telegram='https://t.me/TestUser4',
             github='https://github.com',
         )
-        cls.test_profile4.skills.set([cls.test_skill2, cls.test_skill4])
+        cls.test_profile4.skills.set([cls.test_technologie2, cls.test_technologie4])
 
     @classmethod
     def tearDownClass(cls) -> None:

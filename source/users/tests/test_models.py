@@ -4,25 +4,24 @@ from .users_test_settings import UsersSettings
 from ..models import Profile, Technologie
 
 
-class SkillModelTestCase(UsersSettings):
-
+class TechnologieModelTestCase(UsersSettings):
     def test_skill_fileds(self) -> None:
-        self.assertEqual(self.test_skill1.title, 'Django_test_skill', self.error())
+        self.assertEqual(self.test_technologie1.title, 'Django_test_skill', self.error())
 
     def test_cant_create_instance_copy(self) -> None:
         with self.assertRaises(IntegrityError):
-            Skill.objects.create(title='Django_test_skill')
+            Technologie.objects.create(title='Django_test_skill')
 
     def test_invalid_field_data_(self) -> None:
         with self.assertRaises(DataError):
-            Skill.objects.create(title='a' * 51)
+            Technologie.objects.create(title='a' * 51)
 
     def test_skill_meta_poles(self) -> None:
-        self.assertEqual(self.test_skill1._meta.verbose_name, 'Технология', self.error())
-        self.assertEqual(self.test_skill1._meta.verbose_name_plural, 'Технологии', self.error())
+        self.assertEqual(self.test_technologie1._meta.verbose_name, 'Технология', self.error())
+        self.assertEqual(self.test_technologie1._meta.verbose_name_plural, 'Технологии', self.error())
 
     def test_skill_str_view(self) -> None:
-        self.assertEqual(str(self.test_skill1), 'Django_test_skill', self.error())
+        self.assertEqual(str(self.test_technologie1), 'Django_test_skill', self.error())
 
 
 class ProfileModelTestCase(UsersSettings):
@@ -36,7 +35,7 @@ class ProfileModelTestCase(UsersSettings):
         self.assertEqual(self.test_profile1.github, 'https://github.com', self.error())
         self.assertEqual(
             [skill for skill in self.test_profile1.skills.all()],
-            [self.test_skill1, self.test_skill2],
+            [self.test_technologie1, self.test_technologie2],
             self.error()
         )
 
