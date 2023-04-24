@@ -50,10 +50,8 @@ class UsersSettings(TestCase):
         # Create test profiles
         cls.test_profile1 = Profile.objects.create(
             user=cls.test_user1,
-            nickname='test_user1_nickname',
             name='test_user1_name',
             surname='test_user1_surname',
-            email='test_user1@test.com',
             city='default_City1',
             about='Something about test_user1',
             telegram='https://t.me/TestUser1',
@@ -63,10 +61,8 @@ class UsersSettings(TestCase):
 
         cls.test_profile2 = Profile.objects.create(
             user=cls.test_user2,
-            nickname='test_user2_nickname',
             name='test_user2_name',
             surname='test_user2_surname',
-            email='test_user2@test.com',
             city='default_City1',
             about='Something about test_user2',
             telegram='https://t.me/TestUser2',
@@ -76,10 +72,8 @@ class UsersSettings(TestCase):
 
         cls.test_profile3 = Profile.objects.create(
             user=cls.test_user3,
-            nickname='test_user3_nickname',
             name='test_user3_name',
             surname='test_user3_surname',
-            email='test_user3@test.com',
             city='default_City2',
             about='Something about test_user3',
             telegram='https://t.me/TestUser3',
@@ -89,10 +83,8 @@ class UsersSettings(TestCase):
 
         cls.test_profile4 = Profile.objects.create(
             user=cls.test_user4,
-            nickname='test_user4_nickname',
             name='test_user4_name',
             surname='test_user4_surname',
-            email='test_user4@test.com',
             city='default_City2',
             about='Something about test_user4',
             telegram='https://t.me/TestUser4',

@@ -1,7 +1,7 @@
 from django.db.utils import IntegrityError, DataError
 
 from .users_test_settings import UsersSettings
-from ..models import Profile, Skill
+from ..models import Profile, Technologie
 
 
 class SkillModelTestCase(UsersSettings):
@@ -30,7 +30,6 @@ class ProfileModelTestCase(UsersSettings):
         self.assertEqual(self.test_profile1.user, self.test_user1, self.error())
         self.assertEqual(self.test_profile1.name, 'test_user1_name', self.error())
         self.assertEqual(self.test_profile1.surname, 'test_user1_surname', self.error())
-        self.assertEqual(self.test_profile1.email, 'test_user1@test.com', self.error())
         self.assertEqual(self.test_profile1.city, 'default_City1', self.error())
         self.assertEqual(self.test_profile1.about, 'Something about test_user1', self.error())
         self.assertEqual(self.test_profile1.telegram, 'https://t.me/TestUser1', self.error())
