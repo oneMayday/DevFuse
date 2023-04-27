@@ -1,14 +1,23 @@
 from django.db.utils import IntegrityError, DataError
 
 from .users_test_settings import UsersSettings
-from ..models import Profile, Technologie
+from ..models import Profile, Technologie, Specialization
+
+
+class SpecializationsModelTestCase(UsersSettings):
+    def test_specialization_fileds(self) -> None:
+        self.assertEqual(self.test_specialization1.title, 'Backend', self.error())
+
+    def test_cant_create_specialization_with_the_same_name(self) -> None:
+        with self.assertRaises(IntegrityError):
+            Specialization.objects.create(title='Backend')
 
 
 class TechnologieModelTestCase(UsersSettings):
-    def test_skill_fileds(self) -> None:
+    def test_technologie_fileds(self) -> None:
         self.assertEqual(self.test_technologie1.title, 'Django_test_skill', self.error())
 
-    def test_cant_create_instance_copy(self) -> None:
+    def test_cant_create_technology_with_the_same_name(self) -> None:
         with self.assertRaises(IntegrityError):
             Technologie.objects.create(title='Django_test_skill')
 
@@ -16,11 +25,11 @@ class TechnologieModelTestCase(UsersSettings):
         with self.assertRaises(DataError):
             Technologie.objects.create(title='a' * 51)
 
-    def test_skill_meta_poles(self) -> None:
+    def test_technologie_meta_poles(self) -> None:
         self.assertEqual(self.test_technologie1._meta.verbose_name, 'Технология', self.error())
         self.assertEqual(self.test_technologie1._meta.verbose_name_plural, 'Технологии', self.error())
 
-    def test_skill_str_view(self) -> None:
+    def test_technologie_str_view(self) -> None:
         self.assertEqual(str(self.test_technologie1), 'Django_test_skill', self.error())
 
 
@@ -30,6 +39,7 @@ class ProfileModelTestCase(UsersSettings):
         self.assertEqual(self.test_profile1.name, 'test_user1_name', self.error())
         self.assertEqual(self.test_profile1.surname, 'test_user1_surname', self.error())
         self.assertEqual(self.test_profile1.city, 'default_City1', self.error())
+        self.assertEqual(self.test_profile1.specialization, self.test_specialization1, self.error())
         self.assertEqual(self.test_profile1.about, 'Something about test_user1', self.error())
         self.assertEqual(self.test_profile1.telegram, 'https://t.me/TestUser1', self.error())
         self.assertEqual(self.test_profile1.github, 'https://github.com', self.error())

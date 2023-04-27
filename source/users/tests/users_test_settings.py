@@ -26,6 +26,8 @@ class UsersSettings(TestCase):
         cls.test_user1 = User.objects.create_user(
             username='test_user1',
             password='testuser1_password',
+            is_superuser=True,
+            is_staff=True,
         )
         cls.authorized_user1 = Client()
         cls.authorized_user1.login(username='test_user1', password='testuser1_password')
