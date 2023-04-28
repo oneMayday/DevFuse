@@ -6,7 +6,7 @@ from billboard import views
 
 
 router = DefaultRouter()
-router.register('billboard', views.PublicationsAPIView, basename='profiles')
+router.register('billboard', views.PublicationsAPIView, basename='billboard')
 
 urlpatterns = [
     path('', include(router.urls))
