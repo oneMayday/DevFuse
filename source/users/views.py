@@ -2,6 +2,7 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 from users.models import Profile, Technologie, Specialization
+from users.permissions import IsProfileOwnerOrAdminOrReadOnly
 from users.serializers import ProfileSerializer, TechnologieSerializer, SpecializationSerializer
 
 
@@ -24,6 +25,10 @@ class SpecializationAPIView(viewsets.ModelViewSet):
 class ProfileAPIView(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
-    permission_classes = [
-        IsAuthenticated
-    ]
+
+    def get_permissions(self):
+        if self.action in ['update', 'partial_update', 'destroy']:
+            permission_classes = [IsProfileOwnerOrAdminOrReadOnly]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
