@@ -9,5 +9,5 @@ router = DefaultRouter()
 router.register('billboard', views.PublicationsAPIView, basename='billboard')
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
 ]
