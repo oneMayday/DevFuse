@@ -8,4 +8,5 @@ urlpatterns = [
     re_path(r'^auth/', include('djoser.urls.authtoken')),
     path('api/', include('users.urls')),
     path('api/', include('billboard.urls')),
+    path('chat/', include('chat.urls')),
 ]
