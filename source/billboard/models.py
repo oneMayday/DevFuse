@@ -10,7 +10,7 @@ class Publication(models.Model):
     technology_stack = models.ManyToManyField(Technologie, verbose_name='Cтек технологий')
     who_needs = models.ManyToManyField(Specialization, verbose_name='Кто нужен для проекта')
     owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    team = models.ManyToManyField(User, related_name='usrs')
+    team = models.ManyToManyField(User, related_name='users_in_team')
 
     class Meta:
         verbose_name = 'Публикация'

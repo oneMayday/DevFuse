@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.fields import CurrentUserDefault
 
@@ -9,6 +10,7 @@ class PublicationSerializer(serializers.ModelSerializer):
     technology_stack = serializers.SlugRelatedField(many=True, slug_field='title', queryset=Technologie.objects.all())
     who_needs = serializers.SlugRelatedField(many=True, slug_field='title', queryset=Specialization.objects.all())
     owner = serializers.HiddenField(default=CurrentUserDefault())
+    # team = serializers.SlugRelatedField(many=True, slug_field='username', queryset=User.objects.all())
 
     class Meta:
         model = Publication
