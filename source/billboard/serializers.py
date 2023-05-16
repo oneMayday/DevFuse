@@ -12,4 +12,4 @@ class PublicationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Publication
-        fields = ('pk', 'title', 'description', 'technology_stack', 'who_needs', 'owner')
+        fields = ('pk', 'title', 'description', 'technology_stack', 'who_needs', 'owner', 'team')
