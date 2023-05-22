@@ -4,7 +4,16 @@ from rest_framework.fields import CurrentUserDefault
 from users import models
 
 
-class ProfileSerializer(serializers.ModelSerializer):
+class ReadProfileSerializer(serializers.ModelSerializer):
+    skills = serializers.SlugRelatedField(many=True, slug_field='title', read_only=True)
+    specialization = serializers.SlugRelatedField(many=False, slug_field='title', read_only=True)
+
+    class Meta:
+        model = models.Profile
+        exclude = ('id', 'user', 'created',)
+
+
+class CreateAndUpdateProfileSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=CurrentUserDefault())
 
     class Meta:

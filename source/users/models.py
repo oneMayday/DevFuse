@@ -23,10 +23,10 @@ class Specialization(models.Model):
 		verbose_name = 'Специализация'
 		verbose_name_plural = 'Специализации'
 
-	def __repr__(self):
+	def __str__(self):
 		return self.title
 
-	def __str__(self):
+	def __repr__(self):
 		return self.title
 
 
