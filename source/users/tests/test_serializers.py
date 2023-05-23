@@ -1,8 +1,5 @@
-from django.contrib.auth.models import User
-from django.test.client import Client
-from django.urls import reverse
-
-from users.serializers import SpecializationSerializer, TechnologieSerializer, ProfileSerializer
+from users.serializers import SpecializationSerializer, TechnologieSerializer, ReadProfileSerializer, \
+	CreateAndUpdateProfileSerializer
 from users.tests.users_test_settings import UsersSettings
 
 
@@ -66,34 +63,45 @@ class TechnologiesSerializerTestCase(UsersSettings):
 		self.assertFalse(serializer.is_valid(), self.error())
 
 
-class ProdileSerializerTestCase(UsersSettings):
-	def test_get_serialized_profile(self) -> None:
-		serializer = ProfileSerializer([self.test_profile1, self.test_profile2], many=True)
-		expected_data = [
-			{
-				'id': self.test_profile1.pk,
+class ProfileSerializerTestCase(UsersSettings):
+	def test_get_detail_serialized_profiles(self) -> None:
+		serializer = ReadProfileSerializer(self.test_profile1)
+		expected_data = {
 				'name': 'test_user1_name',
 				'surname': 'test_user1_surname',
 				'city': 'default_City1',
 				'about': 'Something about test_user1',
-				'specialization': self.test_specialization1.pk,
-				'skills': [self.test_technologie1.pk, self.test_technologie2.pk],
+				'specialization': self.test_specialization1.title,
+				'skills': [self.test_technologie1.title, self.test_technologie2.title],
+				'telegram': 'https://t.me/TestUser1',
+				'github': 'https://github.com',
+			}
+		self.assertEqual(serializer.data, expected_data, self.error())
+
+	def test_get_list_serialized_profiles(self) -> None:
+		serializer = ReadProfileSerializer([self.test_profile1, self.test_profile2], many=True)
+		expected_data = [
+			{
+				'name': 'test_user1_name',
+				'surname': 'test_user1_surname',
+				'city': 'default_City1',
+				'about': 'Something about test_user1',
+				'specialization': self.test_specialization1.title,
+				'skills': [self.test_technologie1.title, self.test_technologie2.title],
 				'telegram': 'https://t.me/TestUser1',
 				'github': 'https://github.com',
 			},
 			{
-				'id': self.test_profile2.pk,
 				'name': 'test_user2_name',
 				'surname': 'test_user2_surname',
 				'city': 'default_City1',
 				'about': 'Something about test_user2',
-				'specialization': self.test_specialization2.pk,
-				'skills': [self.test_technologie3.pk, self.test_technologie4.pk],
+				'specialization': self.test_specialization2.title,
+				'skills': [self.test_technologie3.title, self.test_technologie4.title],
 				'telegram': 'https://t.me/TestUser2',
 				'github': 'https://github.com',
 			},
 		]
-
 		self.assertEqual(serializer.data, expected_data, self.error())
 
 	def test_post_correct_validate_profile_serializer(self) -> None:
@@ -107,5 +115,13 @@ class ProdileSerializerTestCase(UsersSettings):
 				'telegram': 'https://t.me/TestUser',
 				'github': 'https://github.com',
 			}
-		serializer = ProfileSerializer(data=correct_data)
+		serializer = CreateAndUpdateProfileSerializer(data=correct_data)
+		self.assertTrue(serializer.is_valid, self.error())
+
+	def test_update_correct_validate_profile_serializer(self) -> None:
+		correct_update_data = {
+				'name': 'test_name_updated',
+				'surname': 'test_surname_updated',
+			}
+		serializer = CreateAndUpdateProfileSerializer(data=correct_update_data)
 		self.assertTrue(serializer.is_valid, self.error())

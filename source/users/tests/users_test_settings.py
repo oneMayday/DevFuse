@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.test.client import Client
 
+from billboard.models import Publication
 from users.models import Technologie, Profile, Specialization
 
 
@@ -104,6 +105,56 @@ class UsersSettings(TestCase):
             github='https://github.com',
         )
         cls.test_profile4.skills.set([cls.test_technologie2, cls.test_technologie4])
+
+        # Create publications
+        cls.test_publication1 = Publication.objects.create(
+            title='Test_publication1',
+            description='Test_publication1_description',
+            owner=cls.test_user1,
+        )
+        cls.test_publication1.technology_stack.set(
+            [
+                cls.test_technologie1,
+                cls.test_technologie2,
+                cls.test_technologie3,
+                cls.test_technologie4
+            ]
+        )
+
+        cls.test_publication1.who_needs.set(
+            [
+                cls.test_specialization1,
+                cls.test_specialization2,
+                cls.test_specialization3
+            ]
+        )
+
+        cls.test_publication1.team.set([cls.test_user1, cls.test_user2])
+
+        cls.test_publication2 = Publication.objects.create(
+            title='Test_publication1',
+            description='Test_publication1_description',
+            owner=cls.test_user3,
+        )
+
+        cls.test_publication2.technology_stack.set(
+            [
+                cls.test_technologie1,
+                cls.test_technologie2,
+                cls.test_technologie3,
+                cls.test_technologie4
+            ]
+        )
+
+        cls.test_publication2.who_needs.set(
+            [
+                cls.test_specialization1,
+                cls.test_specialization2,
+                cls.test_specialization3
+            ]
+        )
+
+        cls.test_publication2.team.set([cls.test_user1, cls.test_user2, cls.test_user3, cls.test_user4])
 
     @classmethod
     def tearDownClass(cls) -> None:

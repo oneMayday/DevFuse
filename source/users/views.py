@@ -3,8 +3,11 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 from users.models import Profile, Technologie, Specialization
 from users.permissions import IsProfileOwnerOrAdminOrReadOnly
-from users.serializers import TechnologieSerializer, SpecializationSerializer, \
-    CreateAndUpdateProfileSerializer, ReadProfileSerializer
+from users.serializers import (TechnologieSerializer,
+                               SpecializationSerializer,
+                               CreateAndUpdateProfileSerializer,
+                               ReadProfileSerializer
+                               )
 
 
 class TechnologieAPIView(viewsets.ModelViewSet):

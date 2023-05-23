@@ -20,7 +20,7 @@ class PublicationsAPIView(viewsets.ModelViewSet):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
             permission_classes = [IsAuthenticated, IsPublicationOwnerOrReadOnly]
         elif self.action == 'chat':
-            permission_classes = [IsInTeam]
+            permission_classes = [IsAuthenticated, IsInTeam]
         else:
             permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
