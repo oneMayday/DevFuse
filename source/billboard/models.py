@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -11,6 +13,8 @@ class Publication(models.Model):
     who_needs = models.ManyToManyField(Specialization, verbose_name='Кто нужен для проекта')
     owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     team = models.ManyToManyField(User, related_name='users_in_team')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = 'Публикация'

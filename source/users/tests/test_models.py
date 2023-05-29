@@ -1,6 +1,6 @@
 from django.db.utils import IntegrityError, DataError
 
-from .users_test_settings import UsersSettings
+from .global_test_settings import UsersSettings
 from ..models import Profile, Technologie, Specialization
 
 
@@ -40,6 +40,7 @@ class ProfileModelTestCase(UsersSettings):
         self.assertEqual(self.test_profile1.surname, 'test_user1_surname', self.error())
         self.assertEqual(self.test_profile1.city, 'default_City1', self.error())
         self.assertEqual(self.test_profile1.specialization, self.test_specialization1, self.error())
+        self.assertFalse(self.test_profile1.ready_to_work, self.error())
         self.assertEqual(self.test_profile1.about, 'Something about test_user1', self.error())
         self.assertEqual(self.test_profile1.telegram, 'https://t.me/TestUser1', self.error())
         self.assertEqual(self.test_profile1.github, 'https://github.com', self.error())

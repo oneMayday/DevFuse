@@ -77,6 +77,7 @@ class UsersSettings(TestCase):
             city='default_City1',
             about='Something about test_user2',
             specialization=cls.test_specialization2,
+            ready_to_work=True,
             telegram='https://t.me/TestUser2',
             github='https://github.com',
         )
@@ -101,6 +102,7 @@ class UsersSettings(TestCase):
             city='default_City2',
             about='Something about test_user4',
             specialization=cls.test_specialization3,
+            ready_to_work=True,
             telegram='https://t.me/TestUser4',
             github='https://github.com',
         )

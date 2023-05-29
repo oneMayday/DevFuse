@@ -1,8 +1,7 @@
-from users.tests.users_test_settings import UsersSettings
+from users.tests.global_test_settings import UsersSettings
 
 
 class PublicationModelTestCase(UsersSettings):
-
     def test_profile_fields(self) -> None:
         self.assertEqual(self.test_publication1.title, 'Test_publication1', self.error())
         self.assertEqual(self.test_publication1.description, 'Test_publication1_description', self.error())

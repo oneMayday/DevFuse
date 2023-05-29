@@ -31,13 +31,14 @@ class Specialization(models.Model):
 
 
 class Profile(models.Model):
-	user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+	user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True, related_name='profile')
 	name = models.CharField(max_length=50, blank=True, null=True)
 	surname = models.CharField(max_length=50, blank=True, null=True)
 	city = models.CharField(max_length=50, blank=True, null=True)
 	about = models.TextField(max_length=500, blank=True, null=True)
 	specialization = models.ForeignKey(Specialization, on_delete=models.SET_NULL, blank=True, null=True)
 	skills = models.ManyToManyField(Technologie, blank=True)
+	ready_to_work = models.BooleanField(default=False)
 	telegram = models.URLField(blank=True, null=True)
 	github = models.URLField(blank=True, null=True)
 	created = models.DateTimeField(auto_now_add=True)

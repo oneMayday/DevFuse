@@ -1,6 +1,6 @@
 from users.serializers import SpecializationSerializer, TechnologieSerializer, ReadProfileSerializer, \
 	CreateAndUpdateProfileSerializer
-from users.tests.users_test_settings import UsersSettings
+from users.tests.global_test_settings import UsersSettings
 
 
 class SpecializationSerializerTestCase(UsersSettings):
@@ -72,6 +72,7 @@ class ProfileSerializerTestCase(UsersSettings):
 				'city': 'default_City1',
 				'about': 'Something about test_user1',
 				'specialization': self.test_specialization1.title,
+				'ready_to_work': False,
 				'skills': [self.test_technologie1.title, self.test_technologie2.title],
 				'telegram': 'https://t.me/TestUser1',
 				'github': 'https://github.com',
@@ -87,6 +88,7 @@ class ProfileSerializerTestCase(UsersSettings):
 				'city': 'default_City1',
 				'about': 'Something about test_user1',
 				'specialization': self.test_specialization1.title,
+				'ready_to_work': False,
 				'skills': [self.test_technologie1.title, self.test_technologie2.title],
 				'telegram': 'https://t.me/TestUser1',
 				'github': 'https://github.com',
@@ -97,6 +99,7 @@ class ProfileSerializerTestCase(UsersSettings):
 				'city': 'default_City1',
 				'about': 'Something about test_user2',
 				'specialization': self.test_specialization2.title,
+				'ready_to_work': True,
 				'skills': [self.test_technologie3.title, self.test_technologie4.title],
 				'telegram': 'https://t.me/TestUser2',
 				'github': 'https://github.com',
@@ -111,6 +114,7 @@ class ProfileSerializerTestCase(UsersSettings):
 				'city': 'default_City',
 				'about': 'Something about test_user',
 				'specialization': self.test_specialization1.pk,
+				'ready_to_work': None,
 				'skills': [self.test_technologie2.pk, self.test_technologie4.pk],
 				'telegram': 'https://t.me/TestUser',
 				'github': 'https://github.com',
