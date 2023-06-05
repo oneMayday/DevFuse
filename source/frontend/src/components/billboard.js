@@ -4,7 +4,7 @@ import React from 'react';
 function Billboard() {
     return (
     <div classname='App'>
-    Billboard
+    Доска объявлений
     </div>
     );
 }
